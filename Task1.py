@@ -1,7 +1,6 @@
-import random
+# File: Task1.py
+# Author: Alex Porri
+# Description: Testing out Pycharm
 
-NUMBER = random.randint(1,10)
-
-while NUMBER > 0:
-    print("Hello world")
-    NUMBER-=1
+# Prints out "Hello world!"
+print("Hello world!")
