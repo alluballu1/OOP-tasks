@@ -1,4 +1,4 @@
-# File: Exercise3Task3.py
+# File: Exercise1Task3.py
 # Author: Alex Porri
 # Description:  Sort numbers and strings
 
