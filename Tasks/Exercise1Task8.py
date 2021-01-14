@@ -1,4 +1,4 @@
-# File: Exercise1Task7.py
+# File: Exercise1Task8.py
 # Author: Alex Porri
 # Description: A game of rock-paper-scissors
 
