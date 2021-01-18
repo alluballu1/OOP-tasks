@@ -1,5 +1,5 @@
 
-# File name: Exercise2.py
+# File name: Exercise2Task7.py
 # Author: Alex Porri
 # Description: Coin class (for flipping)
 
