@@ -10,7 +10,7 @@ class coin:
     # The __init__ method initializes the sideup data attribute with "heads"
 
         def __init__(self):
-            self.sideup = "Untossed: Heads"
+            self.SIDEUP = "Untossed: Heads"
 
     # The toss method generate a random number
     # int the range of 0 to 1. If the number
@@ -18,14 +18,14 @@ class coin:
 
         def toss(self):
             if random.randint(0,1) == 0:
-                self.sideup = "Heads"
+                self.SIDEUP = "Heads"
             else:
-                self.sideup = "Tails"
+                self.SIDEUP = "Tails"
 
     # the get_sideup method returns the value referenced by sideup.
 
         def get_sideup(self):
-            return self.sideup
+            return self.SIDEUP
 
 # The main function
 
@@ -33,14 +33,14 @@ def main():
 
     #Create an object from the coin class
 
-    my_coin = coin()
-    print(my_coin.get_sideup())
+    MY_COIN = coin()
+    print(MY_COIN.get_sideup())
     #Toss the coin
     print("Tossing the coin...")
-    my_coin.toss()
+    MY_COIN.toss()
 
     #Display the side
 
-    print(my_coin.get_sideup())
+    print(MY_COIN.get_sideup())
 
 main()
