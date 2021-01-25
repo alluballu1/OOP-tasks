@@ -1,6 +1,6 @@
-# File name: Exercise2Task8.py
+# File name: Exercise3Task2.py
 # Author: Alex Porri
-# Description: Coin class (for flipping)
+# Description: Coin class (for flipping), added a randomly picked currency for the coin
 
 import random
 
@@ -10,7 +10,13 @@ class coin:
 
     def __init__(self):
 
+        # list of coin types to be picked for the used currency
+
+        list_of_coins = ("Euro", "Pound", "Dollar", "Ruble", "Yen")
         self.SIDEUP = "Untossed: Heads"
+
+        # the coin's currency picked at random
+        self.currency = list_of_coins[random.randint(0, 4)]
 
     # The toss method generate a random number
     # int the range of 0 to 1. If the number
@@ -32,6 +38,11 @@ class coin:
     def get_sideup(self):
         return self.SIDEUP
 
+    # returns the coins currency type
+
+    def get_currency(self):
+        return self.currency
+
 
 # The main function
 
@@ -45,7 +56,7 @@ def main():
 
     # Display the side
 
-    print("Landed on: " + MY_COIN.get_sideup(), sep="\n")
+    print("Landed on: " + MY_COIN.get_sideup(), "Type of coin: " + MY_COIN.get_currency(), sep="\n")
 
 
 main()
