@@ -11,15 +11,15 @@ import datetime
 class alarm_time():
 
     def __init__(self):
-        self.ALARM_HOURS = "00"
-        self.ALARM_MINUTES = "00"
+        self.alarm_hours = "00"
+        self.alarm_minutes = "00"
 
     def set_alarm_time(self):
-        self.ALARM_HOURS = str(input("Set alarm Hour: "))
-        self.ALARM_MINUTES = str(input("Set alarm Minutes: "))
+        self.alarm_hours = str(input("Set alarm Hour: "))
+        self.alarm_minutes = str(input("Set alarm Minutes: "))
 
     def get_times(self):
-        return self.ALARM_HOURS + self.ALARM_MINUTES
+        return self.alarm_hours + self.alarm_minutes
 
 # Current time as hours and minutes, separately. For some reason didn't work without making them global variables
 
@@ -31,9 +31,9 @@ def alarm_clock():
     global CURRENT_HOUR
     global CURRENT_MINUTES
 
-    SET_TIME = alarm_time()
-    SET_TIME.set_alarm_time()
-    ALARM_TIME = SET_TIME.get_times()
+    set_time = alarm_time()
+    set_time.set_alarm_time()
+    ALARM_TIME = set_time.get_times()
 
     while 1 > 0:
 
