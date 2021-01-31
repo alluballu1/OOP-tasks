@@ -9,7 +9,7 @@ class coin:
     # The __init__ method initializes the sideup data attribute with "heads"
 
     def __init__(self):
-        self.SIDEUP = "Untossed: Heads"
+        self.sideup = "Untossed: Heads"
         self.typeof_coin = "Euro"
 
     # The toss method generate a random number
@@ -17,25 +17,24 @@ class coin:
     # 0 = "heads", otherwise "tails"
 
     def coin_type(self):
-        global list_of_coins
-        list_of_coins = ("Euro", "Pound", "Dollar", "Ruble", "Yen")
-        self.typeof_coin = list_of_coins[random.randint(0, 4)]
+        LIST_OF_COINS = ("Euro", "Pound", "Dollar", "Ruble", "Yen")
+        self.typeof_coin = LIST_OF_COINS[random.randint(0, 4)]
 
     def toss(self):
-        TOSS_VALUE = random.randint(0, 3)
-        if TOSS_VALUE == 0:
-            self.SIDEUP = "Heads"
-        elif TOSS_VALUE == 1:
-            self.SIDEUP = "Tails"
-        elif TOSS_VALUE == 2:
-            self.SIDEUP = "It landed on it's side!"
+        toss_value = random.randint(0, 3)
+        if toss_value == 0:
+            self.sideup = "Heads"
+        elif toss_value == 1:
+            self.sideup = "Tails"
+        elif toss_value == 2:
+            self.sideup = "It landed on it's side!"
         else:
-            self.SIDEUP = "Uhh... I think it fell into a rabbit hole. Somehow."
+            self.sideup = "Uhh... I think it fell into a rabbit hole. Somehow."
 
     # the get_sideup method returns the value referenced by sideup.
 
     def get_sideup(self):
-        return self.SIDEUP
+        return self.sideup
     # returns the coin's currency type
 
     def get_cointype(self):
@@ -47,20 +46,20 @@ class coin:
 def main():
     # Create an object from the coin class
 
-    MY_COIN = coin()
-    print("Currency BEFORE changing it: " + MY_COIN.get_cointype())
+    my_coin = coin()
+    print("Currency BEFORE changing it: " + my_coin.get_cointype())
 
     # Calls the coin's currency conversion function
-    MY_COIN.coin_type()
+    my_coin.coin_type()
 
 
     # Toss the coin
     print("Tossing the coin...")
-    MY_COIN.toss()
+    my_coin.toss()
 
     # Display the side
 
-    print("Landed on: "+MY_COIN.get_sideup(), "Type of coin AFTER tossing: "+MY_COIN.get_cointype(), sep="\n")
+    print("Landed on: "+my_coin.get_sideup(), "Type of coin AFTER tossing: "+my_coin.get_cointype(), sep="\n")
 
 
 main()

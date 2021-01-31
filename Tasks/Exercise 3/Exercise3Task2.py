@@ -12,11 +12,11 @@ class coin:
 
         # list of coin types to be picked for the used currency
 
-        list_of_coins = ("Euro", "Pound", "Dollar", "Ruble", "Yen")
-        self.SIDEUP = "Untossed: Heads"
+        LIST_OF_COINS = ("Euro", "Pound", "Dollar", "Ruble", "Yen")
+        self.sideup = "Untossed: Heads"
 
         # the coin's currency picked at random
-        self.currency = list_of_coins[random.randint(0, 4)]
+        self.currency = LIST_OF_COINS[random.randint(0, 4)]
 
     # The toss method generate a random number
     # int the range of 0 to 1. If the number
@@ -25,18 +25,18 @@ class coin:
     def toss(self):
         TOSS_VALUE = random.randint(0, 3)
         if TOSS_VALUE == 0:
-            self.SIDEUP = "Heads"
+            self.sideup = "Heads"
         elif TOSS_VALUE == 1:
-            self.SIDEUP = "Tails"
+            self.sideup = "Tails"
         elif TOSS_VALUE == 2:
-            self.SIDEUP = "It landed on it's side!"
+            self.sideup = "It landed on it's side!"
         else:
-            self.SIDEUP = "Uhh... I think it fell into a rabbit hole. Somehow."
+            self.sideup = "Uhh... I think it fell into a rabbit hole. Somehow."
 
     # the get_sideup method returns the value referenced by sideup.
 
     def get_sideup(self):
-        return self.SIDEUP
+        return self.sideup
 
     # returns the coins currency type
 
@@ -49,14 +49,14 @@ class coin:
 def main():
     # Create an object from the coin class
 
-    MY_COIN = coin()
+    my_coin = coin()
     # Toss the coin
     print("Tossing the coin...")
-    MY_COIN.toss()
+    my_coin.toss()
 
     # Display the side
 
-    print("Landed on: " + MY_COIN.get_sideup(), "Type of coin: " + MY_COIN.get_currency(), sep="\n")
+    print("Landed on: " + my_coin.get_sideup(), "Type of coin: " + my_coin.get_currency(), sep="\n")
 
 
 main()

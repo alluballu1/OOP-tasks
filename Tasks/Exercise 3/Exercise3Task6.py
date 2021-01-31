@@ -42,9 +42,9 @@ def main():
     my_dice.roll_dice()
     your_dice.roll_dice()
 
-    FIRST_VALUE = my_dice.get_side_up()
-    SECOND_VALUE = your_dice.get_side_up()
-    print("My dice value: " + str(FIRST_VALUE), "Your dice value: " + str(SECOND_VALUE), "Sum of the two values: " +
-          str(FIRST_VALUE+SECOND_VALUE), sep="\n")
+    first_value = my_dice.get_side_up()
+    second_value = your_dice.get_side_up()
+    print("My dice value: " + str(first_value), "Your dice value: " + str(second_value), "Sum of the two values: " +
+          str(first_value+second_value), sep="\n")
 
 main()
