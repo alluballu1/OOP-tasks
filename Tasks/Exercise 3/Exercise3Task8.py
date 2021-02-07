@@ -12,31 +12,31 @@ class CellPhone:
 
         # Creating the attributes, all private
 
-        self.__Manufact = "Nokia"
-        self.__Model = "Nokia 3310"
-        self.__RetailPrice = "250"
+        self.__manufact = "Nokia"
+        self.__model = "Nokia 3310"
+        self.__retail_price = "250"
 
     # functions for setting the manufacturer, model and retail price
 
     def set_manufact(self):
-        self.__Manufact = input("Enter the manufacturer: ")
+        self.__manufact = input("Enter the manufacturer: ")
 
     def set_model(self):
-        self.__Model = input("Enter the model: ")
+        self.__model = input("Enter the model: ")
 
     def set_retailprice(self):
-        self.__RetailPrice = float(input("Enter the retail price: "))
+        self.__retail_price = float(input("Enter the retail price: "))
 
     # functions for getting and returning the manufacturer, model and retail price
 
     def get_manufact(self):
-        return self.__Manufact
+        return self.__manufact
 
     def get_model(self):
-        return self.__Model
+        return self.__model
 
     def get_retailprice(self):
-        return self.__RetailPrice
+        return self.__retail_price
 
 # Main function
 
@@ -54,8 +54,7 @@ def main():
 
     # Printing out the new data
 
-    print("Here is the data that you provided: ", "Manufacturer: " + new_phone.get_manufact(),
-          "Model number: " + new_phone.get_model(), "Retail price: " + str(new_phone.get_retailprice()), sep="\n")
+    print(new_phone)
 
 # Calling the main function
 
