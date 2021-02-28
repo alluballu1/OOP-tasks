@@ -81,3 +81,4 @@ Length: {str(self.__length)}m
 Width: {str(self.__width)}m
 Size: {str(self.__size)}m^3
 ID: {str(self.__id)}"""
+
