@@ -3,7 +3,6 @@
 # Description: A quiz that asks 10 different countries' capitals and gives out a score
 
 import random
-
 def create_dictionary():
 
     dictionary = {}
@@ -45,3 +44,5 @@ def main():
     print("Your total score was: " + str(score))
 
 main()
+
+

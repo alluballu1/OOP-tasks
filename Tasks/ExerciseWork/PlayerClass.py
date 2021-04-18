@@ -31,10 +31,5 @@ class Player:
     def get_experience(self):
         return self.__experience
 
-    # Str function
 
-    def __str__(self):
-        return f"Name: {self.__name}" \
-        f"\nAge: {str(self.__age)}" \
-        f"\nExperience: {self.__experience}"
 

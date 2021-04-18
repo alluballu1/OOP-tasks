@@ -53,9 +53,6 @@ class Student:
         number = int(input("Which pet should be removed?: "))
         self.__pets.pop(number)
 
-
-
-
     # Creating the string function for returning the object info when printed out
     def __str__(self):
         return "The student's information is such: " + \

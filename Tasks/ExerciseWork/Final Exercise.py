@@ -3,10 +3,10 @@
 # Description: The main GUI on which the functionalities will be built on.
 
 import tkinter as tk
+from tkinter import ttk
 import random
 
 from CharacterClass import Character
-
 
 # SOME NOTES FOR MYSELF, PLEASE IGNORE
 # root.tk.TK() for creating the main window
@@ -19,7 +19,6 @@ from CharacterClass import Character
 # Function for admitting the player info to the main screen (later the class creation)
 
 def secondButtonPress(first_name, last_name, window, list_of_players, experience, age, player_list):
-    # list_of_players.insert("end", etunimi.get() + " " + sukunimi.get())
     player_name = first_name.get() + " " + last_name.get()
     new_player = Character(player_name, age.get(), experience.get())
     list_of_players.insert("end", new_player)
@@ -33,14 +32,8 @@ def secondButtonPress(first_name, last_name, window, list_of_players, experience
 
 def add_player(root, list_of_players, player_list):
     new_window = tk.Toplevel(root)
-    new_window.geometry("250x200")
+
     new_window.title("Add a new player")
-
-    experience_options = ["Inexperienced", "Novice", "Intermediate", "Experienced"]
-
-    experience_variable = tk.StringVar(new_window)
-    experience_variable.set("Select")
-
 
     first_name = tk.Label(new_window, text="First name")
     first_name_entry = tk.Entry(new_window)
@@ -49,11 +42,15 @@ def add_player(root, list_of_players, player_list):
     age = tk.Label(new_window, text="Age")
     age_entry = tk.Entry(new_window)
     experience = tk.Label(new_window, text="Experience")
-    set_experience = tk.OptionMenu(new_window, experience_variable, *experience_options)
-    set_experience.configure(indicatoron=0, compound='left')
-    new_button = tk.Button(new_window, text="Add player",
+
+    # Using ttk instead of basic tkinter widgets due to better visuals (ttk.Combobox vs. tk.Optionsmenu)
+
+    set_experience = ttk.Combobox(new_window)
+    set_experience["values"] = ("Inexperienced", "Novice", "Intermediate", "Experienced")
+    set_experience.insert(0, "Select")
+    new_button = tk.Button(new_window, text="Add player", width=35,
                            command=lambda: secondButtonPress(first_name_entry, last_name_entry, new_window,
-                                                             list_of_players, experience_variable, age_entry, player_list))
+                                                             list_of_players, set_experience, age_entry, player_list))
 
     first_name.grid(row=0, column=0, pady=5, padx=10)
     first_name_entry.grid(row=0, column=1, pady=5)
@@ -64,35 +61,29 @@ def add_player(root, list_of_players, player_list):
     age_entry.grid(row=2, column=1, pady=5, padx=10)
     experience.grid(row=3, column=0, pady=5, padx=10)
     set_experience.grid(row=3, column=1, pady=5, padx=10)
-    new_button.grid(row=4, column=1, columnspan=2)
+    new_button.grid(row=4, column=0, columnspan=2)
+
+# The main window where the character data can be viewed and modified
 
 def character_window(root, event, player_list):
-    roll = random.randrange(48, 72)
-
-    print(event.widget.get(0), roll)
-
     new_window = tk.Toplevel(root)
     new_window.title("Customize player character")
+    new_window.attributes("-topmost", True)
 
     name = tk.Label(new_window)
     age = tk.Label(new_window)
 
-    race_options = {"Dwarf", "Elf", "Human"}
-    race_variable = tk.StringVar(new_window)
-
-    class_options = {"Mage", "Priest", "Fighter"}
-    class_variable = tk.StringVar(new_window)
-
     experience = tk.Label(new_window)
     list_number = get_class_num(event, player_list)
 
-    save_button = tk.Button(new_window, text="Save",
-                            command=lambda: save_function(race_variable, charname_entry, class_variable,
+    # creating the tkinter widgets
+
+    save_button = tk.Button(new_window, text="Save", width=20,
+                            command=lambda: save_function(race_entry, charname_entry, charclass_entry,
                                                           intellect_entry, strength_entry, dexterity_entry,
                                                           constitution_entry, player_list, list_number))
-    save_button1 = tk.Button(new_window, text="Print data",
-                            command=lambda: print_function(player_list, list_number))
-
+    print_button = tk.Button(new_window, text="Print data", width=20,
+                             command=lambda: print_function(player_list, list_number))
 
     name_label = tk.Label(new_window)
     name_label.configure(text="Player name:")
@@ -100,8 +91,6 @@ def character_window(root, event, player_list):
     age_label.configure(text="Player age:")
     experience_label = tk.Label(new_window)
     experience_label.configure(text="Player experience:")
-    roll_label = tk.Label(new_window)
-    roll_label.configure(text=roll)
 
     name_label.grid(row=0, column=0)
     name.grid(row=0, column=1, pady=2)
@@ -125,16 +114,20 @@ def character_window(root, event, player_list):
     constitution_description = tk.Label(new_window)
     constitution_description.configure(text="Constitution (CST): ")
 
-    race_entry = tk.OptionMenu(new_window, race_variable, *race_options)
-    charname_entry = tk.Entry(new_window)
-    charclass_entry = tk.OptionMenu(new_window, class_variable, *class_options)
+    race_entry = ttk.Combobox(new_window, width=18)
+    race_entry["values"] = ("Dwarf", "Elf", "Human")
+    charname_entry = tk.Entry(new_window, width=22)
+    charclass_entry = ttk.Combobox(new_window, width=18)
+    charclass_entry["values"] = ("Mage", "Priest", "Fighter")
     intellect_entry = tk.Spinbox(new_window, from_=0, to=18)
     strength_entry = tk.Spinbox(new_window, from_=0, to=18)
     dexterity_entry = tk.Spinbox(new_window, from_=0, to=18)
     constitution_entry = tk.Spinbox(new_window, from_=0, to=18)
 
-    display_name(event, name, age, experience, player_list, charname_entry, class_variable,
-                 intellect_entry, strength_entry, dexterity_entry, constitution_entry, race_variable)
+    display_name(event, name, age, experience, player_list, charname_entry, charclass_entry,
+                 intellect_entry, strength_entry, dexterity_entry, constitution_entry, race_entry)
+
+    # Using grid instead of pack due to better layout planning
 
     character_name.grid(row=4, column=0)
     charname_entry.grid(row=4, column=1, padx=10)
@@ -150,9 +143,8 @@ def character_window(root, event, player_list):
     dexterity_entry.grid(row=9, column=1)
     constitution_description.grid(row=10, column=0)
     constitution_entry.grid(row=10, column=1)
-    save_button.grid(row=12, column=0, pady=10)
-    save_button1.grid(row=12, column=1, pady=10 )
-
+    save_button.grid(row=12, column=0)
+    print_button.grid(row=12, column=1)
 
 
 # Function for displaying the selected player's data (currently only the first and last name is shown)
@@ -166,6 +158,7 @@ def get_class_num(event, player_list):
             if player_list[x].get_name() == name_of_player:
                 return x
 
+# Function for saving the changed character data
 
 def save_function(race_entry, charname_entry, charclass_entry,
                   intellect_entry, strength_entry, dexterity_entry,
@@ -177,9 +170,14 @@ def save_function(race_entry, charname_entry, charclass_entry,
     player_list[list_number].set_strength(strength_entry.get())
     player_list[list_number].set_dexterity(dexterity_entry.get())
     player_list[list_number].set_constitution(constitution_entry.get())
+    print("Saved!")
+
+# Simple function for calling the "get all" function from the Character class
 
 def print_function(player_list, list_number):
     print(player_list[list_number].get_all())
+
+# Function for displaying the character data based on the player name. Flawed but works for demonstration purposes.
 
 def display_name(event, name, age, experience, player_list, charname_entry, charclass_entry,
                  intellect_entry, strength_entry, dexterity_entry, constitution_entry, race_entry):
@@ -190,6 +188,7 @@ def display_name(event, name, age, experience, player_list, charname_entry, char
     strength_entry.delete(0, "end")
     dexterity_entry.delete(0, "end")
     constitution_entry.delete(0, "end")
+
     name.configure(text="")
     age.configure(text="")
     experience.configure(text="")
@@ -207,8 +206,8 @@ def display_name(event, name, age, experience, player_list, charname_entry, char
                 age.configure(text=player_list[x]._Player__age)
                 experience.configure(text=player_list[x]._Player__experience)
                 charname_entry.insert(0, player_list[x].get_character_name())
-                charclass_entry.set(player_list[x].get_character_class())
-                race_entry.set(player_list[x].get_race())
+                charclass_entry.insert(0, player_list[x].get_character_class())
+                race_entry.insert(0, player_list[x].get_race())
                 intellect_entry.insert(0, player_list[x].get_intellect())
                 strength_entry.insert(0, player_list[x].get_strength())
                 dexterity_entry.insert(0, player_list[x].get_dexterity())
@@ -226,7 +225,6 @@ def main():
     player_list = []
     root = tk.Tk()
     root.title("Character creation tool")
-    # root.geometry("300x200")
 
     list_of_players = tk.Listbox(root)
 
@@ -234,7 +232,7 @@ def main():
     button.grid(row=0, column=0, pady=5)
 
     list_of_players.grid(row=1, column=0, pady=10, padx=10)
-    list_of_players.bind("<<ListboxSelect>>", lambda event, arg=None: character_window(root, event, player_list))
+    list_of_players.bind('<Double-Button>', lambda event, arg=None: character_window(root, event, player_list))
 
     root.mainloop()
 

@@ -9,15 +9,15 @@ from PlayerClass import Player
 
 class Character(Player):
 
-    def __init__(self, name, age, experience, race, character_class, character_name):
+    def __init__(self, name, age, experience):
         super().__init__(name, age, experience)
-        self.__race = race
-        self.__character_class = character_class
-        self.__character_name = character_name
-        self.__intellect = None
-        self.__strength = None
-        self.__dexterity = None
-        self.__constitution = None
+        self.__race = "None"
+        self.__character_class = "None"
+        self.__character_name = "None"
+        self.__intellect = "None"
+        self.__strength = "None"
+        self.__dexterity = "None"
+        self.__constitution = "None"
 
     # Mutator functions
 
@@ -44,6 +44,9 @@ class Character(Player):
 
     # Accessor functions
 
+    #def get_age(self):
+        #return self.get_age()
+
     def get_race(self):
         return self.__race
 
@@ -65,19 +68,24 @@ class Character(Player):
     def get_constitution(self):
         return self.__constitution
 
+    # Added a function for printing out all of the data
+
+    def get_all(self):
+        return f"===========PLAYER INFO==========="\
+               f"\nPlayer name: {self.get_name()}" \
+               f"\nPlayer age: {self.get_age()}" \
+               f"\nPlayer experience: {self.get_experience()}" \
+               f"\n===========D&D CHARACTER INFO===========" \
+               f"\nCharacter name: {self.__character_name}" \
+               f"\nCharacter  race: {self.__race}" \
+               f"\nCharacter class: {self.__character_class}" \
+               f"\nIntellect: {self.__intellect}" \
+               f"\nStrength: {self.__strength}" \
+               f"\nDexterity: {self.__dexterity}" \
+               f"\nConstitution: {self.__constitution}"
+
     # str function.
 
     def __str__(self):
-        return f"Player name: {self.get_name()}" \
-               f"\nPlayer age: {str(self.get_age())}"\
-               f"\nPlayer experience with D&D: {self.get_experience()}" \
-               f"\nPlayer's D&D character statistics: "\
-             f"\nCharName: {self.__character_name}" \
-             f"\nRace: {self.__race}" \
-             f"\nClass: {self.__character_class}" \
-             f"\nCharacter statistics: " \
-             f"\nIntellect: {str(self.__intellect)}" \
-             f"\nStrength: {str(self.__strength)}" \
-             f"\nDexterity: {str(self.__dexterity)}" \
-             f"\nConstitution: {str(self.__constitution)}"
+        return self.get_name()
 

@@ -2,9 +2,6 @@
 # Author: Alex Porri
 # Description: Class for creating Animal objects,
 
-import random
-
-
 class Animal:
 
     def __init__(self, init_species, init_name):
